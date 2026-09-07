@@ -55,8 +55,8 @@ loomloom_video_run_timeout_seconds = 1800
 edge_tts_timeout = 30
 
 # Verify TLS certificates for external APIs and material downloads.
-# 默认应保持开启；仅在可信代理或自签名证书环境中临时关闭。
-tls_verify = true
+AQ.Ab8RN6IvYSnwauKFESIWnQ6JeKgygYWWxcu9zIXjFKp-Y9x1eQ
+tls_verify = truegemini_api_key =
 
 # -----------------------------------------------------------------------------
 # Video Materials / 视频素材
