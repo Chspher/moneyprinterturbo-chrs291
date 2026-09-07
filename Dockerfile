@@ -57,10 +57,10 @@ RUN set -u; \
                 "https://mirrors.tuna.tsinghua.edu.cn/debian" \
                 "https://mirrors.tuna.tsinghua.edu.cn/debian-security"; \
             if ! install_system_dependencies; then \
-                echo "Tsinghua mirror failed, switching to default Debian mirror" >&2; \
+                echo "Tsinghua mirror failed, switching to security mirror" >&2; \
                 write_debian_sources \
                     "https://deb.debian.org/debian" \
-                    "https://deb.debian.org/debian-security"; \
+                    "https://security.debian.org/debian-security"; \
                 if ! install_system_dependencies; then \
                     echo "Failed to install system dependencies from all configured mirrors" >&2; \
                     exit 1; \
@@ -71,7 +71,7 @@ RUN set -u; \
         echo "Using default Debian mirrors"; \
         write_debian_sources \
             "https://deb.debian.org/debian" \
-            "https://deb.debian.org/debian-security"; \
+            "https://security.debian.org/debian-security"; \
         if ! retry_system_dependencies; then \
             echo "Failed to install system dependencies from the default Debian mirror" >&2; \
             exit 1; \
