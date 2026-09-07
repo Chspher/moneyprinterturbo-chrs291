@@ -60,7 +60,7 @@ RUN set -u; \
                 echo "Tsinghua mirror failed, switching to security mirror" >&2; \
                 write_debian_sources \
                     "https://deb.debian.org/debian" \
-                    "https://security.debian.org/debian-security"; \
+                    "https://deb.debian.org/debian-security
                 if ! install_system_dependencies; then \
                     echo "Failed to install system dependencies from all configured mirrors" >&2; \
                     exit 1; \
