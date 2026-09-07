@@ -71,7 +71,7 @@ RUN set -u; \
         echo "Using default Debian mirrors"; \
         write_debian_sources \
             "https://deb.debian.org/debian" \
-            "https://deb.debian.org/debian-security
+            "https://deb.debian.org/debian-security"
         if ! retry_system_dependencies; then \
             echo "Failed to install system dependencies from the default Debian mirror" >&2; \
             exit 1; \
