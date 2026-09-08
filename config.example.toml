@@ -32,7 +32,7 @@ api_key = ""
 # Hide the basic configuration panel in the WebUI.
 # 是否隐藏 WebUI 基础配置面板。
 hide_config = false
-LarqGqGn5ajxsjNifPGQg3zI04UT9dfeIng70m8XKtuti4re2erbLwm6at7OhGkR0YVoeWimHe581Fpyic7eVQ-scnZNQAA
+some_key  # Missing value here
 # Script generation backend. "local" keeps the existing LLM workflow.
 # "loomloom" uses a configured LoomLoom Market SkillBot to return multiple
 # independently generated script candidates. The WebUI integration is optional.
