@@ -1,6 +1,13 @@
 {
   "Language": "Español",
   "Translation": {
+    "Kokoro Base URL": "URL base de Kokoro",
+    "Kokoro API Key": "Clave API de Kokoro (opcional; [Configuración](https://github.com/remsky/Kokoro-FastAPI))",
+    "Kokoro Model": "Modelo de Kokoro",
+    "Kokoro Voices": "Voces de Kokoro",
+    "Kokoro Voices Placeholder": "Déjalo vacío para cargar las voces del servidor, o escribe af_heart, bf_emma, hf_alpha",
+    "Kokoro Voices Unavailable": "No se pudieron cargar las voces de Kokoro. Se conserva la selección anterior. Comprueba la conexión o introduce las voces manualmente.",
+    "Kokoro Base URL Placeholder": "http://localhost:8880/v1",
     "Login Required": "Inicio de sesión requerido",
     "Please login to access settings": "Inicia sesión para acceder a la configuración",
     "Username": "Usuario",

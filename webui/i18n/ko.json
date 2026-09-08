@@ -1,6 +1,13 @@
 {
   "Language": "한국어",
   "Translation": {
+    "Kokoro Base URL": "Kokoro 기본 URL",
+    "Kokoro API Key": "Kokoro API 키 (선택 사항; [설정 안내](https://github.com/remsky/Kokoro-FastAPI))",
+    "Kokoro Model": "Kokoro 모델",
+    "Kokoro Voices": "Kokoro 음성",
+    "Kokoro Voices Placeholder": "비워 두면 서버의 음성을 불러옵니다. 직접 입력 예: af_heart, bf_emma, hf_alpha",
+    "Kokoro Voices Unavailable": "Kokoro 음성 목록을 불러오지 못했습니다. 기존 선택은 유지됩니다. 연결을 확인하거나 음성을 직접 입력하세요.",
+    "Kokoro Base URL Placeholder": "http://localhost:8880/v1",
     "Login Required": "로그인 필요",
     "Please login to access settings": "설정에 접근하려면 로그인하세요",
     "Username": "사용자 이름",
