@@ -32,7 +32,7 @@ api_key = ""
 # Hide the basic configuration panel in the WebUI.
 # 是否隐藏 WebUI 基础配置面板。
 hide_config = false
-key=some_key = hide_config = false
+
 
 # Script generation backend...
 script_generation_backend = "local"
