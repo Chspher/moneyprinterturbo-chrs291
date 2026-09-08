@@ -21,4 +21,4 @@ services:
       - "127.0.0.1:8080:8080"
     command: [ "python3", "main.py" ]
     volumes: *common-volumes
-    restart: IMAGE_NAME:ghcr.io/chspher/moneyprinterturbo
+    restart: IMAGE_NAME:ghcr.io/chspher/moneyprinterturbo"
