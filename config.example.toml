@@ -2,9 +2,7 @@
 # The app copies this file to config.toml on first run. Keep API keys and other
 # credentials in config.toml; do not commit your local config.toml.
 
-# =============================================================================
 # API Service / API 服务
-# =============================================================================
 # Log level: DEBUG, INFO, WARNING, or ERROR.
 log_level = "DEBUG"
 # Use 127.0.0.1 for local-only access. 0.0.0.0 listens on all network interfaces.
@@ -32,7 +30,12 @@ api_key = ""
 # Hide the basic configuration panel in the WebUI.
 # 是否隐藏 WebUI 基础配置面板。
 hide_config = false
-#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
+
+#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"
+
+
+# Script generation backend...
+script_generation_backend = "local"
 # Script generation backend. "local" keeps the existing LLM workflow.
 # "loomloom" uses a configured LoomLoom Market SkillBot to return multiple
 # independently generated script candidates. The WebUI integration is optional.
@@ -55,7 +58,7 @@ loomloom_video_run_timeout_seconds = 1800
 edge_tts_timeout = 30
 
 # Verify TLS certificates for external APIs and material downloads.
-AQ.Ab8RN6IvYSnwauKFESIWnQ6JeKgygYWWxcu9zIXjFKp-Y9x1eQ
+
 tls_verify = truegemini_api_key =
 
 # -----------------------------------------------------------------------------
@@ -80,7 +83,6 @@ video_source = "pexels"
 # API key lists support key rotation. Use straight ASCII double quotes and
 # separate multiple keys with commas, for example: ["key-1", "key-2"].
 # Key 必须使用英文半角双引号，多个 Key 使用英文逗号分隔。
-
 # Register at https://www.pexels.com/api/
 pexels_api_keys = []
 
@@ -347,6 +349,22 @@ openrouter_model_name = ""
 ollama_base_url = ""
 ollama_model_name = ""
 
+# Claude Code (Claude Pro / Max / Team subscription).
+# Uses the locally installed, logged-in `claude` CLI in headless mode instead of
+# an API key, so no Anthropic API credit is needed. Requirements:
+#   - the `claude` CLI must be installed in whatever runs MoneyPrinterTurbo
+#   - it must be authenticated: interactively via `claude` on the host, or with
+#     a long-lived token from `claude setup-token` exported as
+#     CLAUDE_CODE_OAUTH_TOKEN (needed for Docker)
+# Leave model_name empty to use the CLI's current default model, or set one such
+# as "claude-opus-5" / "claude-sonnet-5". Leave cli_path empty to resolve
+# `claude` from PATH. Leave timeout empty to use the 300s default.
+# Calls use your Claude subscription usage limits; conflicting ANTHROPIC_* and
+# CLAUDE_CODE_USE_* environment variables are removed before the CLI runs.
+claude_code_model_name = ""
+claude_code_cli_path = ""
+claude_code_timeout = ""
+
 # OneAPI. Use the token, Base URL, and model ID from your OneAPI deployment.
 # Project: https://github.com/songquanpeng/one-api
 oneapi_api_key = ""
@@ -517,6 +535,16 @@ api_key = ""
 model_id = "chatterbox"
 # Voice names exposed by the configured Chatterbox server.
 voices = ["default-Female"]
+
+[kokoro]
+# OpenAI-compatible Kokoro TTS server (hexgrad/Kokoro-82M, Apache-2.0, runs on CPU).
+# The defaults target remsky/Kokoro-FastAPI running locally on port 8880.
+base_url = "http://127.0.0.1:8880/v1"
+api_key = ""
+model_id = "kokoro"
+# Voice names (af_heart, bf_emma, hf_alpha, ...). Leave empty to read the list
+# from the server (GET {base_url}/audio/voices).
+voices = []
 
 [fish_audio]
 # Fish Audio TTS service: https://fish.audio

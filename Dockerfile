@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim-bookworm
 
 # Set the working directory in the container
 WORKDIR /MoneyPrinterTurbo
@@ -14,69 +14,9 @@ ENV PYTHONPATH="/MoneyPrinterTurbo"
 ARG DOCKER_BUILD_MIRROR=china
 ARG PIP_USE_OFFICIAL=0
 
-# 系统依赖安装需要同时满足两点：国内环境保留镜像回退能力，所有镜像均
-# 失败时必须让 Docker 构建立刻失败。旧循环最后执行的 sleep 总会返回 0，
-# 导致 git/ffmpeg 未安装时仍生成不可用镜像。这里把“写入软件源”“安装”
-# 和“三次重试”拆成边界清晰的 shell 函数，并用函数返回值决定是否继续。
-# 所有软件源统一使用 HTTPS，避免部分网络环境直接拦截明文 HTTP 请求。
-RUN set -u; \
-    write_debian_sources() { \
-        main_url="$1"; \
-        security_url="$2"; \
-        printf 'deb %s bullseye main\ndeb %s bullseye-updates main\ndeb %s bullseye-security main\n' \
-            "$main_url" "$main_url" "$security_url" > /etc/apt/sources.list; \
-        rm -rf /var/lib/apt/lists/*; \
-    }; \
-    install_system_dependencies() { \
-        apt-get update && \
-        apt-get install -y --no-install-recommends git ffmpeg; \
-    }; \
-    retry_system_dependencies() { \
-        attempt=1; \
-        while [ "$attempt" -le 3 ]; do \
-            echo "Attempt $attempt: installing system dependencies"; \
-            if install_system_dependencies; then \
-                return 0; \
-            fi; \
-            echo "Attempt $attempt failed" >&2; \
-            if [ "$attempt" -lt 3 ]; then \
-                echo "Retrying in 5 seconds..." >&2; \
-                sleep 5; \
-            fi; \
-            attempt=$((attempt + 1)); \
-        done; \
-        return 1; \
-    }; \
-    if [ "$DOCKER_BUILD_MIRROR" = "china" ]; then \
-        write_debian_sources \
-            "https://mirrors.aliyun.com/debian" \
-            "https://mirrors.aliyun.com/debian-security"; \
-        if ! retry_system_dependencies; then \
-            echo "Aliyun mirror failed, switching to Tsinghua mirror" >&2; \
-            write_debian_sources \
-                "https://mirrors.tuna.tsinghua.edu.cn/debian" \
-                "https://mirrors.tuna.tsinghua.edu.cn/debian-security"; \
-            if ! install_system_dependencies; then \
-                echo "Tsinghua mirror failed, switching to default Debian mirror" >&2; \
-                write_debian_sources \
-                    "https://deb.debian.org/debian" \
-                    "https://deb.debian.org/debian-security"; \
-                if ! install_system_dependencies; then \
-                    echo "Failed to install system dependencies from all configured mirrors" >&2; \
-                    exit 1; \
-                fi; \
-            fi; \
-        fi; \
-    else \
-        echo "Using default Debian mirrors"; \
-        write_debian_sources \
-            "https://deb.debian.org/debian" \
-            "https://deb.debian.org/debian-security"; \
-        if ! retry_system_dependencies; then \
-            echo "Failed to install system dependencies from the default Debian mirror" >&2; \
-            exit 1; \
-        fi; \
-    fi; \
+# 简化系统依赖安装 - Bookworm有所有包可用
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy only the requirements.txt first to leverage Docker cache
@@ -99,7 +39,7 @@ EXPOSE 8501
 
 # 容器内部必须监听 0.0.0.0，宿主机仍通过 docker 端口映射限制为 127.0.0.1。
 # browser.serverAddress 只决定浏览器展示的访问地址，不能替代 server.address。
-CMD ["streamlit", "run", "./webui/Main.py", "--server.address=0.0.0.0", "--server.port=8501", "--browser.serverAddress=127.0.0.1", "--server.enableCORS=True", "--browser.gatherUsageStats=False", "--client.toolbarMode=minimal", "--logger.hideWelcomeMessage=True", "--server.showEmailPrompt=False"]
+CMD ["streamlit", "run", "./webui/Main.py", "--server.address=0.0.0.0", "--server.port=8501", "--browser.serverAddress=127.0.0.1", "--server.enableCORS=True", "--browser.gatherUsageStats=False"]
 
 # 1. Build the Docker image using the following command
 # docker build -t moneyprinterturbo .

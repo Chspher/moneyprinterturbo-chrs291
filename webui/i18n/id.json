@@ -1,6 +1,13 @@
 {
   "Language": "Bahasa Indonesia",
   "Translation": {
+    "Kokoro Base URL": "URL Dasar Kokoro",
+    "Kokoro API Key": "Kunci API Kokoro (opsional; [Panduan Konfigurasi](https://github.com/remsky/Kokoro-FastAPI))",
+    "Kokoro Model": "Model Kokoro",
+    "Kokoro Voices": "Suara Kokoro",
+    "Kokoro Voices Placeholder": "Kosongkan untuk memuat suara server, atau isi af_heart, bf_emma, hf_alpha",
+    "Kokoro Voices Unavailable": "Daftar suara Kokoro tidak dapat dimuat. Pilihan sebelumnya tetap disimpan. Periksa koneksi atau masukkan suara secara manual.",
+    "Kokoro Base URL Placeholder": "http://localhost:8880/v1",
     "Login Required": "Login Diperlukan",
     "Please login to access settings": "Silakan login untuk mengakses pengaturan",
     "Username": "Nama Pengguna",

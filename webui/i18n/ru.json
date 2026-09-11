@@ -1,6 +1,13 @@
 {
   "Language": "Русский",
   "Translation": {
+    "Kokoro Base URL": "Базовый URL Kokoro",
+    "Kokoro API Key": "API-ключ Kokoro (необязательно; [Настройка](https://github.com/remsky/Kokoro-FastAPI))",
+    "Kokoro Model": "Модель Kokoro",
+    "Kokoro Voices": "Голоса Kokoro",
+    "Kokoro Voices Placeholder": "Оставьте пустым для загрузки голосов с сервера или укажите af_heart, bf_emma, hf_alpha",
+    "Kokoro Voices Unavailable": "Не удалось загрузить голоса Kokoro. Предыдущий выбор сохранён. Проверьте подключение или укажите голоса вручную.",
+    "Kokoro Base URL Placeholder": "http://localhost:8880/v1",
     "Login Required": "Требуется вход",
     "Please login to access settings": "Войдите, чтобы открыть настройки",
     "Username": "Имя пользователя",
